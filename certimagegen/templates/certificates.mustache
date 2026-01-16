@@ -1,0 +1,144 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+
+{{! local_certimagegen/templates/certificates.mustache }}
+
+<div id="certificate_list" data-component="local_certimagegen">
+  <h2>My Certificate</h2>
+
+  <input type="hidden" id="attachmsg" value="{{share_message}}">
+
+  <div class="row g-3">
+
+    {{! ————————————————— Issued certificates ————————————————— }}
+    {{#issuedcerts}}
+      <div class="col-md-6 col-sm-12">
+        <div class="certificate-card" data-cmid="{{cmid}}" data-courseid="{{courseid}}">
+          <div class="certimg">
+            <img src="{{image_url}}" alt="Certificate" id="shareimg{{cmid}}">
+          </div>
+
+          <div class="course-id btn" data-courseid="{{courseid}}">{{course_label}}</div>
+          <div class="course-title">{{cert_title}}</div>
+
+          <div class="bottombtn">
+            <a href="{{download_url}}" download="certificate.png" class="btn btn-download">Download</a>
+            <input type="hidden" class="shareURL" value="{{share_url}}">
+            <button class="openShare btn btn-share">Share</button>
+          </div>
+        </div>
+      </div>
+    {{/issuedcerts}}
+
+    {{#issued_pagingbar}}
+      <div class="col-12 text-center">
+        {{{issued_pagingbar}}}
+      </div>
+    {{/issued_pagingbar}}
+
+    {{! ————————————————— Locked / upcoming certificates ————————————————— }}
+    {{#lockedcerts}}
+      <div class="col-md-6 col-sm-12">
+        <div class="certificate-card" data-cmid="{{cmid}}" data-courseid="{{courseid}}">
+          <div class="certimg">
+            <div class="locked-preview" id="imgdata{{cmid}}" style="height:240px;">
+              <img src="{{preview_img_url}}" class="lock" alt="Locked Certificate">
+              <div class="lock-overlay">
+                <img src="{{wwwroot}}/local/certimagegen/assets/lock.png" alt="Locked" class="lock-icon">
+              </div>
+            </div>
+          </div>
+
+          <div class="course-id btn" data-courseid="{{courseid}}">{{course_label}}</div>
+          <div class="course-title">{{module_name}}</div>
+
+          <div class="d-flex justify-content-between align-items-center">
+            <a href="{{download_url}}" class="btn btn-download download-locked" data-cmid="{{cmid}}">Download</a>
+            <span class="text-muted">Certificate must be downloaded before it can be shared.</span>
+          </div>
+        </div>
+      </div>
+    {{/lockedcerts}}
+    
+    {{^issuedcerts}}
+        {{^lockedcerts}}
+          <div class="col-12 text-center mt-5">
+            <p class="text-muted">You have no certificates at the moment.</p>
+          </div>
+        {{/lockedcerts}}
+    {{/issuedcerts}}
+
+    {{#locked_pagingbar}}
+      <div class="col-12 text-center">
+        {{{locked_pagingbar}}}
+      </div>
+    {{/locked_pagingbar}}
+
+  </div>
+
+  {{! ————————————————— Badges ————————————————— }}
+  {{#hasbadges}}
+    <h2 class="mb-3 mt-3 fw-bold headbadge">My Badges</h2>
+
+    <div class="row bdblock badge-section">
+      <div class="d-flex justify-content-between align-items-center w-100">
+        <div class="badge-count">
+          Number of badges earned: <span class="count">{{badge_count_padded}}</span>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        {{#badges}}
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="badge-box">
+              <img src="{{image_url}}" alt="{{name}}" class="customfunbadge">
+            </div>
+          </div>
+        {{/badges}}
+      </div>
+    </div>
+  {{/hasbadges}}
+</div>
+
+{{! ————————————————— Share modal ————————————————— }}
+<div id="shareModal" class="modal" style="background:#8f8f8fb3;">
+  <div class="modal-content">
+    <span class="close-btn" role="button" aria-label="Close">&times;</span>
+    <h2>Share</h2>
+
+    <div class="social-icons">
+      <a id="fbook" title="Facebook" target="_blank">
+        <img src="{{wwwroot}}/local/certimagegen/assets/fb.svg" alt="Facebook"><span style="color:#1877f2;">facebook</span>
+      </a>
+      <a id="linked" title="LinkedIn" target="_blank">
+        <img src="{{wwwroot}}/local/certimagegen/assets/linked.svg" alt="LinkedIn"><span style="color:#0077b5;">linkedIn</span>
+      </a>
+      <a id="whatsapp" title="WhatsApp" target="_blank">
+        <img src="{{wwwroot}}/local/certimagegen/assets/wapp.svg" alt="WhatsApp"><span style="color:#50ca5e;">whatsapp</span>
+      </a>
+      <a id="twitterx" title="X" target="_blank">
+        <img src="{{wwwroot}}/local/certimagegen/assets/twittx.jpg" alt="X"><span style="color:black;font-weight:bold;">X</span>
+      </a>
+    </div>
+
+    <label for="shareLink">Copy Link</label>
+    <div class="copy-section">
+      <input type="text" id="shareLink" value="" readonly>
+      <button id="copyBtn">Copy</button>
+    </div>
+  </div>
+</div>
