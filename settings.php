@@ -18,8 +18,7 @@
  * Add page to admin menu.
  *
  * @package    local_certimagegen
- * @author Andreas Grabs <moodle@grabs-edv.de>
- * @copyright  Andreas Grabs
+ * @copyright  2025 Rudraksh Batra <batra.rudraksh@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
