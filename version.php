@@ -21,7 +21,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'local_certimagegen';
-$plugin->version   = 2025071629;
+$plugin->version   = 2026012001;
 $plugin->requires  = 2022041900;
 $plugin->maturity  = MATURITY_STABLE;
 $plugin->release   = '1.0.0';
