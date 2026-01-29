@@ -46,10 +46,12 @@ $PAGE->set_pagelayout('standard');
 $PAGE->set_title('My Certificates');
 $PAGE->set_heading(format_string($SITE->fullname));
 
-
-
-
-
+$pdftoppmPath = trim(shell_exec('command -v pdftoppm'));
+if (empty($pdftoppmPath)) {
+    redirect( new moodle_url('/admin/settings.php', ['section' => 'local_qbsettings']),
+    get_string('pdftoppm_missing', 'local_certimagegen'));
+ 
+}
 /**
  * Ensure certificate image exists for a given issue.
  *
