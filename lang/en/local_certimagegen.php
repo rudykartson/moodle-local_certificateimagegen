@@ -53,7 +53,7 @@ $string['default_sharecert_color'] = 'Shared Certificate Color';
 $string['default_sharecert_color_desc'] = 'Choose color for shared Certificate border';
 
 
-$string['privacy:metadata'] = 'privacy:metadata';
+$string['privacy:metadata'] = 'The Certificate Image Generator plugin does not store any personal data.';
 
 $string['certimage_not_found'] = 'Certificate image not found.';
 $string['certificate_of_achievement'] = 'Certificate of Achievement';
