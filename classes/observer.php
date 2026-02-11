@@ -112,18 +112,10 @@ class observer {
 
                     $fs = get_file_storage();
 
-                    if ($existing = $fs->get_file($context->id, $component, $filearea, $itemid, '/', $filename)) {
+                   if ($existing = $fs->get_file($context->id, $component, $filearea, $itemid, '/', $filename)) {
+    $existing->delete();
+}
 
-                        // $existing->delete();
-                        $DB->delete_records('files', [
-                            'contextid' => $context->id,
-                            'component' => $component,
-                            'filearea'  => $filearea,
-                            'itemid'    => $itemid,
-                            'filepath'  => '/',
-                            'filename'  => $filename
-                        ]);
-                    }
 
 
                     $filerecord = [
