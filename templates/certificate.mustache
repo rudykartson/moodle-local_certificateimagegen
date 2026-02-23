@@ -1,0 +1,47 @@
+<head>
+  <meta property="og:title" content="{{sharemessage}}" />
+  <meta property="og:image" content="{{cert_image_url}}" />
+  <meta property="og:url" content="{{currenturl}}" />
+  <meta property="og:type" content="certificate" />
+  <meta property="og:description" content="Certified Background Verification Professional (CBVP) certificate issued by BGV Academy, recognizing completion of professional training in global background screening—one of its kind certification in India" />
+  <meta property="og:logo" content="{{logourl}}" />
+</head>
+
+<body>
+  <div class="container py-5" id="sharecertpage" style="background-color: #f5f7fb; border-radius: 10px;">
+    <h2 class="section-title text-primary">{{{customtextlineshead.0}}}</h2>
+    {{#customtextlines}}
+      {{^@first}}
+        <div class="section-title-desc">{{{.}}}</div>
+      {{/@first}}
+    {{/customtextlines}}
+
+    <div class="row g-4">
+      <!-- Certificate Card -->
+      <div class="col-md-7">
+        <div class="certificate-card p-3" style="border: solid 10px {{colorcode}}">
+          <img src="{{cert_image_url}}" alt="{{certificate_img}}" class="certificate-img">
+        </div>
+      </div>
+
+      <!-- Course Card -->
+      <div class="col-md-5">
+        <div class="course-card text-center">
+          <img src="{{course_image_url}}" alt="course" class="course-image">
+          <div class="cardhead">
+            <h5 class="course-title">{{course_name}}</h5>
+            <div>{{{course_summary}}}</div>
+          </div>
+          <ul class="text-start">
+            {{#customcardtextlines}}
+              {{^@first}}<li>{{{.}}}</li>{{/@first}}
+            {{/customcardtextlines}}
+          </ul>
+          <div class="d-flex justify-content-left align-items-left mt-3">
+            <a href="../../mod/customcert/view.php?id={{cmid}}&downloadown=1" download="certificate.png" class="btn btn-download">{{download}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
